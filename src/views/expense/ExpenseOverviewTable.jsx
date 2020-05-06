@@ -1,9 +1,11 @@
 import React from 'react'
-import { Accordion } from 'semantic-ui-react'
+import OverviewTable from '../../components/OverviewTable'
+import ExpenseOverviewRow from "./ExpenseOverviewRow";
 
-// Has many ExpenseCategoryOverviewTable
-
-const ExpenseOverviewTable = () => {
-    const monthlyTotals = {};
-    const yearlyTotal = 0;
-};
+export default function ExpenseOverviewTable() {
+    return (
+        <OverviewTable>
+            <ExpenseOverviewRow categoryName={'Home'}/>
+        </OverviewTable>
+    );
+}
