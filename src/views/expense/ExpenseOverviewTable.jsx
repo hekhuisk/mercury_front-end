@@ -5,7 +5,7 @@ import ExpenseOverviewRow from "./ExpenseOverviewRow";
 export default function ExpenseOverviewTable() {
     return (
         <OverviewTable>
-            <ExpenseOverviewRow categoryName={'Home'}/>
+            <ExpenseOverviewRow majorCategoryName={'Home'}/>
         </OverviewTable>
     );
 }

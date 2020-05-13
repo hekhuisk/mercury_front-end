@@ -1,6 +1,9 @@
 import React, {useState} from "react";
-import {Grid, Icon} from "semantic-ui-react";
+import {Table, Icon} from "semantic-ui-react";
 import PropTypes from "prop-types";
+
+const OverviewCell = (props) =>
+    <Table.Cell width={1} textAlign={'center'}>{`$${props.cellValue}`}</Table.Cell>;
 
 export default function OverviewRow(props) {
     const {
@@ -17,38 +20,38 @@ export default function OverviewRow(props) {
 
     return (
         <>
-            <Grid.Row>
+            <Table.Row>
                 {expandable
                     ?
-                    <Grid.Column
+                    <Table.Cell
                         width={3}
                         onClick={() => setExpanded(!expanded)}
                     >
                         <Icon name={expanded ? 'caret right' : 'caret down'}/>
                         <b>{rowName}</b>
-                    </Grid.Column>
+                    </Table.Cell>
                     :
-                    <Grid.Column
+                    <Table.Cell
                         width={3}
                         textAlign={textAlign}
                     >
                         {rowName}
-                    </Grid.Column>
+                    </Table.Cell>
                 }
-                <Grid.Column width={1} textAlign={'center'}>{`$${monthlyTotals.jan}`}</Grid.Column>
-                <Grid.Column width={1} textAlign={'center'}>{`$${monthlyTotals.feb}`}</Grid.Column>
-                <Grid.Column width={1} textAlign={'center'}>{`$${monthlyTotals.mar}`}</Grid.Column>
-                <Grid.Column width={1} textAlign={'center'}>{`$${monthlyTotals.apr}`}</Grid.Column>
-                <Grid.Column width={1} textAlign={'center'}>{`$${monthlyTotals.may}`}</Grid.Column>
-                <Grid.Column width={1} textAlign={'center'}>{`$${monthlyTotals.jun}`}</Grid.Column>
-                <Grid.Column width={1} textAlign={'center'}>{`$${monthlyTotals.jul}`}</Grid.Column>
-                <Grid.Column width={1} textAlign={'center'}>{`$${monthlyTotals.aug}`}</Grid.Column>
-                <Grid.Column width={1} textAlign={'center'}>{`$${monthlyTotals.sep}`}</Grid.Column>
-                <Grid.Column width={1} textAlign={'center'}>{`$${monthlyTotals.oct}`}</Grid.Column>
-                <Grid.Column width={1} textAlign={'center'}>{`$${monthlyTotals.nov}`}</Grid.Column>
-                <Grid.Column width={1} textAlign={'center'}>{`$${monthlyTotals.dec}`}</Grid.Column>
-                <Grid.Column width={1} textAlign={'center'}>{`$${yearlyTotal}`}</Grid.Column>
-            </Grid.Row>
+                <OverviewCell cellValue={monthlyTotals.jan} />
+                <OverviewCell cellValue={monthlyTotals.feb} />
+                <OverviewCell cellValue={monthlyTotals.mar} />
+                <OverviewCell cellValue={monthlyTotals.apr} />
+                <OverviewCell cellValue={monthlyTotals.may} />
+                <OverviewCell cellValue={monthlyTotals.jun} />
+                <OverviewCell cellValue={monthlyTotals.jul} />
+                <OverviewCell cellValue={monthlyTotals.aug} />
+                <OverviewCell cellValue={monthlyTotals.sep} />
+                <OverviewCell cellValue={monthlyTotals.oct} />
+                <OverviewCell cellValue={monthlyTotals.nov} />
+                <OverviewCell cellValue={monthlyTotals.dec} />
+                <OverviewCell cellValue={yearlyTotal} />
+            </Table.Row>
             {expanded && children}
         </>
     );

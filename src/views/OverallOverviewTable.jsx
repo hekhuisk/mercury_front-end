@@ -18,32 +18,19 @@ const createMonthlyTotals = () => ({
 });
 
 export default function OverallOverviewTable() {
+    const tableData = [
+        { rowName: "Total Income", monthlyTotals: createMonthlyTotals() },
+        { rowName: "Total Expenses", monthlyTotals: createMonthlyTotals() },
+        { rowName: "Budget", monthlyTotals: createMonthlyTotals() },
+        { rowName: "Budget Over / Under", monthlyTotals: createMonthlyTotals() },
+        { rowName: "Est Savings (Income - Budget)", monthlyTotals: createMonthlyTotals() },
+        { rowName: "Actual Savings (Income - Expenses)", monthlyTotals: createMonthlyTotals() }
+    ];
+
     return (
-        <OverviewTable>
-            <OverviewRow
-                monthlyTotals={createMonthlyTotals()}
-                rowName="Total Income"
-            />
-            <OverviewRow
-                monthlyTotals={createMonthlyTotals()}
-                rowName="Total Expenses"
-            />
-            <OverviewRow
-                monthlyTotals={createMonthlyTotals()}
-                rowName="Budget"
-            />
-            <OverviewRow
-                monthlyTotals={createMonthlyTotals()}
-                rowName="Budget Over / Under"
-            />
-            <OverviewRow
-                monthlyTotals={createMonthlyTotals()}
-                rowName="Est Savings (Income - Budget)"
-            />
-            <OverviewRow
-                monthlyTotals={createMonthlyTotals()}
-                rowName="Actual Savings (Income - Expenses)"
-            />
-        </OverviewTable>
+        <OverviewTable
+            tableData={tableData}
+            totalsRow
+        />
     );
 }

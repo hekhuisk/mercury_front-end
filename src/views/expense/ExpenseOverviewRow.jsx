@@ -3,10 +3,10 @@ import OverviewRow from "../../components/OverviewRow";
 
 export default function ExpenseOverviewRow(props) {
     const {
-        categoryName
+        majorCategoryName
     } = props;
 
-    const subcategoryProps1 = {
+    const subCategoryProps1 = {
         rowName: 'Mortgage',
         textAlign: 'right',
         monthlyTotals: {
@@ -25,7 +25,7 @@ export default function ExpenseOverviewRow(props) {
         }
     };
 
-    const subcategoryProps2 = {
+    const subCategoryProps2 = {
         rowName: 'Home Insurance',
         textAlign: 'right',
         monthlyTotals: {
@@ -47,7 +47,7 @@ export default function ExpenseOverviewRow(props) {
     return (
         <OverviewRow
             expandable
-            rowName={categoryName}
+            rowName={majorCategoryName}
             monthlyTotals={{
                 jan: 0,
                 feb: 0,
@@ -63,8 +63,8 @@ export default function ExpenseOverviewRow(props) {
                 dec: 0
             }}
         >
-            <OverviewRow {...subcategoryProps1} />
-            <OverviewRow {...subcategoryProps2} />
+            <OverviewRow {...subCategoryProps1} />
+            <OverviewRow {...subCategoryProps2} />
         </OverviewRow>
     );
 }
