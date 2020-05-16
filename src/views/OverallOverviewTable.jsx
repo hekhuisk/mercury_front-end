@@ -1,5 +1,4 @@
 import React from "react";
-import OverviewRow from "../components/OverviewRow";
 import OverviewTable from "../components/OverviewTable";
 
 const createMonthlyTotals = () => ({

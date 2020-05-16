@@ -19,6 +19,7 @@ const ExpenseRow = (props) => {
         description,
         majorCategory,
         majorPurchase,
+        paymentSource,
         receipt,
         subCategory
     } = props;
@@ -36,6 +37,7 @@ const ExpenseRow = (props) => {
                     />
                 }
             </Table.Cell>
+            <Table.Cell>{paymentSource}</Table.Cell>
             <Table.Cell textAlign="right">
                 {receipt &&
                     <Popup

@@ -9,6 +9,7 @@ const ExpenseTable = (props) => {
         description: 'Lowes',
         majorCategory: 'Home',
         majorPurchase: false,
+        paymentSource: 'Cash',
         receipt: false,
         subCategory: 'Lawn/Garden'
     }
@@ -21,6 +22,7 @@ const ExpenseTable = (props) => {
                     <Table.HeaderCell>Description</Table.HeaderCell>
                     <Table.HeaderCell>Category</Table.HeaderCell>
                     <Table.HeaderCell>Major Purchase</Table.HeaderCell>
+                    <Table.HeaderCell>Payment Source</Table.HeaderCell>
                     <Table.HeaderCell>Cost</Table.HeaderCell>
                     <Table.HeaderCell />
                 </Table.Row>
