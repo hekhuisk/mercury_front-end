@@ -8270,16 +8270,6 @@ pretty-format@^25.1.0:
     ansi-styles "^4.0.0"
     react-is "^16.12.0"
 
-primeicons@^3.0.0-rc.1:
-  version "3.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/primeicons/-/primeicons-3.0.0-rc.1.tgz#f1121d59ecf2c07ccbcfe0d93d25250fca09fb51"
-  integrity sha512-n4fJjLdffEAoATTrVRrWXSDD4tmwjx3XBftkGoq5q53jwvBt9FBS9qHykoFudaRRO8Ez/CSI/NypsT0o0aIbOg==
-
-primereact@^4.2.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/primereact/-/primereact-4.2.1.tgz#535f1baf3729490d33798bb3f7cce954920329b9"
-  integrity sha512-i8+ZvbbbaZl0gNTCmEkDyCUStBu6sWNjM5wypTKmP5YT0DAL1sLdqiQKQrZGh4elDDMDYJ2Mz6wCjZS34nwcMw==
-
 private@^0.1.8:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/private/-/private-0.1.8.tgz#2381edb3689f7a53d653190060fcf822d2f368ff"
