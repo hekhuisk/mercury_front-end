@@ -1,5 +1,5 @@
-import React from "react";
-import {InputSwitch} from 'primereact/inputswitch';
+import React from 'react';
+import { InputSwitch } from 'primereact/inputswitch';
 
 const Switch = (props) => {
     const {
