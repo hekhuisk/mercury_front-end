@@ -18,8 +18,8 @@ const createMonthlyTotals = () => ({
 
 export default function IncomeOverviewTable() {
     const tableData = [
-        { rowName: "Salary/Wages", monthlyTotals: createMonthlyTotals() },
-        { rowName: "Refunds/Reimbursements", monthlyTotals: createMonthlyTotals() },
+        { rowName: "Salary / Wages", monthlyTotals: createMonthlyTotals() },
+        { rowName: "Refunds / Reimbursements", monthlyTotals: createMonthlyTotals() },
         { rowName: "Bonuses", monthlyTotals: createMonthlyTotals() },
         { rowName: "Misc", monthlyTotals: createMonthlyTotals() }
     ];

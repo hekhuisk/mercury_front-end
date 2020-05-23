@@ -1,13 +1,15 @@
 import React from 'react'
 import ExpenseOverviewTable from "./ExpenseOverviewTable";
 import ExpenseTable from "./ExpenseTable";
-import {Button} from "semantic-ui-react";
+import {Button} from "primereact/button";
+import ExpenseForm from "./ExpenseForm";
 
 export default function Expense() {
     return (
         <>
             <ExpenseOverviewTable />
-            <Button content='Add Expense' icon='add' labelPosition='right' />
+            <ExpenseForm/>
+            <Button label="Add Expense" icon="pi pi-plus" />
             <ExpenseTable />
         </>
     );
