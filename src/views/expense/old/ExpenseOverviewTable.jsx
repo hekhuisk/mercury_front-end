@@ -1,5 +1,5 @@
 import React from 'react'
-import OverviewTable from '../../components/OverviewTable'
+import OverviewTable from '../../../components/OverviewTable'
 
 export default function ExpenseOverviewTable() {
     const subCategoryProps1 = {

@@ -1,5 +1,5 @@
 import React from "react";
-import OverviewRow from "../../components/OverviewRow";
+import OverviewRow from "../../../components/OverviewRow";
 
 export default function ExpenseOverviewRow(props) {
     const {

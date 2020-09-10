@@ -4,7 +4,7 @@ import {Dialog} from 'primereact/dialog';
 
 
 import { Formik, Form } from 'formik';
-import { Calendar, InputNumber, InputText, Select, Switch } from '../../components/formik';
+import { Calendar, InputNumber, InputText, Select, Switch } from '../../../components/formik';
 
 const categoryOptions = [
     { value: '1', label: 'Home - Lawn/Garden' },
@@ -28,22 +28,24 @@ const ExpenseForm = (props) => {
     } = props;
 
     return (
-        <Dialog visible={true} maximizable style={{width: '50vw', height: '50vw'}}>
+        <Dialog visible={true} contentStyle={{width: '40vw'}}>
             <Formik initialValues={initialValues} onSubmit={onSubmit}>
                 <Form>
                     <div className="p-grid">
-                        <div className="p-col-6" text-align="right" >
+                        <div className="p-col-6" style={{'text-align': 'right'}} >
                             <label>Expense Date</label>
                         </div>
                         <div className="p-col-6">
                             <Calendar
                                 name="expenseDate"
                                 showButtonBar
-                                // showIcon
+                                showIcon
                                 placeholder="Expense Date"
+                                // style={{'overflow':'visible'}}
+                                appendTo={document.body}
                             />
                         </div>
-                        <div className="p-col-6" text-align="right">
+                        <div className="p-col-6" style={{'text-align': 'right'}}>
                             <label>Description</label>
                         </div>
                         <div className="p-col-6">
@@ -52,7 +54,7 @@ const ExpenseForm = (props) => {
                                 placeholder="Description"
                             />
                         </div>
-                        <div className="p-col-6" text-align="right">
+                        <div className="p-col-6" style={{'text-align': 'right'}}>
                             <label>Category</label>
                         </div>
                         <div className="p-col-6">
@@ -61,13 +63,13 @@ const ExpenseForm = (props) => {
                                 options={categoryOptions}
                             />
                         </div>
-                        <div className="p-col-6" text-align="right">
+                        <div className="p-col-6" style={{'text-align': 'right'}}>
                             <label>Major Purchase</label>
                         </div>
                         <div className="p-col-6" >
                             <Switch name="majorPurchase"/>
                         </div>
-                        <div className="p-col-6" text-align="right">
+                        <div className="p-col-6" style={{'text-align': 'right'}}>
                             <label>Payment Source</label>
                         </div>
                         <div className="p-col-6" >
@@ -76,7 +78,7 @@ const ExpenseForm = (props) => {
                                 options={paymentSourceOptions}
                             />
                         </div>
-                        <div className="p-col-6" text-align="right">
+                        <div className="p-col-6" style={{'text-align': 'right'}}>
                             <span>Cost</span>
                         </div>
                         <div className="p-col-6">
