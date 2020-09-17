@@ -26,9 +26,6 @@ const TableHead = (props) => {
                         />
                     </TableCell>
                 )}
-                {hasActionColumn && (
-                    <TableCell />
-                )}
                 {columns.map((column) => {
                     const {
                         disablePadding = false,
@@ -47,6 +44,9 @@ const TableHead = (props) => {
                         </TableCell>
                     );
                 })}
+                {hasActionColumn && (
+                    <TableCell />
+                )}
             </TableRow>
         </MUITableHead>
     );

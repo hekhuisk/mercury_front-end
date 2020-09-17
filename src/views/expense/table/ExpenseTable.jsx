@@ -40,7 +40,7 @@ const ExpenseTable = () => {
             columns={columns}
             data={data}
             RowRenderer={ExpenseRow}
-            hasCheckboxColumn
+            hasActionColumn
         />
     );
 };

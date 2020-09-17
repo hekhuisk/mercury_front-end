@@ -11,16 +11,20 @@ import Paper from '@material-ui/core/Paper';
 import { useTable } from 'react-table'
 import TableToolbar from "./TableToolbar";
 import TableHead from "./TableHead";
+import TablePagination from "@material-ui/core/TablePagination";
 
 const Table = (props) => {
     const {
         columns,
         data,
+        hasActionColumn,
         hasCheckboxColumn,
         RowRenderer
     } = props;
 
     const [selected, setSelected] = React.useState([]);
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
     const handleSelectAllClick = (event) => {
         const newSelecteds = event.target.checked ? data.map((n) => n.description) : [];
@@ -28,6 +32,15 @@ const Table = (props) => {
     };
 
     const isRowSelected = (description) => selected.indexOf(description) !== -1;
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
 
     const handleRowClick = (event, description) => {
         const selectedIndex = selected.indexOf(description);
@@ -57,6 +70,7 @@ const Table = (props) => {
                     <TableHead
                         columns={columns}
                         rowCount={data.length}
+                        hasActionColumn={hasActionColumn}
                         hasCheckboxColumn={hasCheckboxColumn}
                         onSelectAllClick={handleSelectAllClick}
                         numberOfRowsSelected={selected.length}
@@ -72,6 +86,15 @@ const Table = (props) => {
                     })}
                 </MUITable>
             </TableContainer>
+            <TablePagination
+                rowsPerPageOptions={[10, 25, 100]}
+                component="div"
+                count={data.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onChangePage={handleChangePage}
+                onChangeRowsPerPage={handleChangeRowsPerPage}
+            />
         </Paper>
     );
 };
