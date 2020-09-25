@@ -1,53 +1,42 @@
 import React from 'react';
-import TableCell from '@material-ui/core/TableCell';
+import MUITableCell from '@material-ui/core/TableCell';
+import MUITableRow from '@material-ui/core/TableRow';
 import MUITableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Checkbox from '@material-ui/core/Checkbox';
+import MUITableSortLabel from "@material-ui/core/TableSortLabel";
 
 const TableHead = (props) => {
     const {
-        columns,
-        hasActionColumn,
-        hasCheckboxColumn,
-        numberOfRowsSelected,
-        onSelectAllClick,
-        rowCount,
+        classes,
+        columnHeaders,
+        order,
+        orderBy,
+        onRequestSort
     } = props;
+
+    const createSortHandler = (property) => (event) => {
+        onRequestSort(event, property);
+    };
 
     return (
         <MUITableHead>
-            <TableRow>
-                {hasCheckboxColumn && (
-                    <TableCell>
-                        <Checkbox
-                            indeterminate={numberOfRowsSelected > 0 && numberOfRowsSelected < rowCount}
-                            checked={rowCount > 0 && numberOfRowsSelected === rowCount}
-                            onChange={onSelectAllClick}
-                        />
-                    </TableCell>
-                )}
-                {columns.map((column) => {
-                    const {
-                        disablePadding = false,
-                        key,
-                        label,
-                        numeric = false
-                    } = column;
-
-                    return (
-                        <TableCell
-                            key={key}
-                            align={numeric ? 'right' : 'left'}
-                            padding={disablePadding ? 'none' : 'default'}
+            <MUITableRow>
+                {columnHeaders.map((columnHeader) => (
+                    <MUITableCell
+                        key={columnHeader.id}
+                        align={columnHeader.numeric ? 'right' : 'left'}
+                        padding={columnHeader.disablePadding ? 'none' : 'default'}
+                        sortDirection={orderBy === columnHeader.id ? order : false}
+                    >
+                        <MUITableSortLabel
+                            active={orderBy === columnHeader.id}
+                            direction={orderBy === columnHeader.id ? order : 'asc'}
+                            onClick={createSortHandler(columnHeader.id)}
                         >
-                            {label}
-                        </TableCell>
-                    );
-                })}
-                {hasActionColumn && (
-                    <TableCell />
-                )}
-            </TableRow>
+                            {columnHeader.label}
+                        </MUITableSortLabel>
+                    </MUITableCell>
+                ))}
+            </MUITableRow>
         </MUITableHead>
     );
 };

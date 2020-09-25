@@ -1,30 +1,32 @@
 import React from "react";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
-import Checkbox from "@material-ui/core/Checkbox";
+import IconButton from "@material-ui/core/IconButton";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const ExpenseRow = (props) => {
     const {
-        handleRowClick,
-        isRowSelected,
         rowData
     } = props;
 
     return (
         <TableRow
-            hover
-            onClick={(event) => handleRowClick(event, rowData.description)}
             key={rowData.description}
-            selected={isRowSelected}
         >
-            <TableCell padding="checkbox">
-                <Checkbox
-                    checked={isRowSelected}
-                />
-            </TableCell>
-            <TableCell>{rowData.description}</TableCell>
-            <TableCell>{rowData.date}</TableCell>
+            <TableCell >{rowData.description}</TableCell>
+            <TableCell >{rowData.date}</TableCell>
+            <TableCell>{rowData.category}</TableCell>
+            <TableCell>{rowData.paymentSource}</TableCell>
             <TableCell align="right">{rowData.cost}</TableCell>
+            <TableCell align="center">
+                <IconButton aria-label="filter list">
+                    <EditIcon />
+                </IconButton>
+                <IconButton aria-label="filter list">
+                    <DeleteIcon />
+                </IconButton>
+            </TableCell>
         </TableRow>
     );
 };

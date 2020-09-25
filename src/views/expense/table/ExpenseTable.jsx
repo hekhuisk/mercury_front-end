@@ -1,46 +1,65 @@
 import React from "react";
 import ExpenseRow from "./ExpenseRow";
-import Table from "../../../components/table/Table";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import FilterListIcon from "@material-ui/icons/FilterList";
+import AddIcon from "@material-ui/icons/Add";
+import DataTable from "../../../components/table/DataTable";
+import TableToolbar from "../../../components/table/TableToolbar";
 
-const ExpenseTable = () => {
-    const columns = React.useMemo(
-        () => [
-            {
-                label: 'Description',
-                key: 'description'
-            },
-            {
-                label: 'Date',
-                key: 'date'
-            },
-            {
-                label: 'Cost',
-                key: 'cost',
-                numeric: true
-            },
-        ],
-        []
-    )
+const columnHeaders = [
+    { id: 'description', numeric: false, disablePadding: true, label: 'Description' },
+    { id: 'date', numeric: false, disablePadding: false, label: 'Date' },
+    { id: 'category', numeric: false, disablePadding: false, label: 'Category' },
+    { id: 'paymentSource', numeric: false, disablePadding: false, label: 'Payment Source' },
+    { id: 'cost', numeric: true, disablePadding: false, label: 'Cost' },
+    { id: 'actions', numeric: false, disablePadding: false, label: '' },
+];
 
-    const data = [
-        {
-            'description': 'Expense 1',
-            'date': '02/05/2020',
-            'cost': '$5.00'
-        },
-        {
-            'description': 'Expense 2',
-            'date': '02/03/2020',
-            'cost': '$2.50'
-        },
-    ];
+function createData(description, date, category, paymentSource, cost) {
+    return { description, date, category, paymentSource, cost };
+}
+
+const data = [
+    createData('Gemmens', '10/10/2020', 'Home - Maintenance', 'Visa', 4.30),
+    createData('Mobile', '10/10/2020', 'Vehicle - Gas', 'Visa', 10.50),
+    createData('Meijer', '10/10/2020', 'Grocery', 'Visa', 50.10),
+];
+
+const ExpenseTable = (props) => {
+    const {
+        handleAddExpense
+    } = props;
+
+    const ExpenseTableToolbar = () =>
+        <TableToolbar>
+            <Typography style={{flex: '1 1 100%'}} variant="h6" id="tableTitle" component="div">
+                Expenses
+            </Typography>
+
+            <Button
+                variant="contained"
+                color="secondary"
+                startIcon={<FilterListIcon />}
+            >
+                Filter List
+            </Button>
+            <Button
+                variant="contained"
+                color="secondary"
+                startIcon={<AddIcon />}
+                onClick={handleAddExpense}
+            >
+                Add Expense
+            </Button>
+        </TableToolbar>;
 
     return (
-        <Table
-            columns={columns}
+        <DataTable
+            columnHeaders={columnHeaders}
             data={data}
             RowRenderer={ExpenseRow}
-            hasActionColumn
+            TableToolbar={ExpenseTableToolbar}
         />
     );
 };
