@@ -9,6 +9,7 @@ import Tab from '@material-ui/core/Tab';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import TabPanel from "../components/tab/TabPanel";
 import Expenses from "./expense/Expenses";
+import PaymentSources from "./paymentSource/PaymentSources";
 
 const NavBar = () => {
     const [ selectedTabValue, setSelectedTabValue ] = React.useState(0);
@@ -47,6 +48,9 @@ const NavBar = () => {
             </AppBar>
             <TabPanel value={selectedTabValue} index={1}>
                 <Expenses />
+            </TabPanel>
+            <TabPanel value={selectedTabValue} index={2}>
+                <PaymentSources />
             </TabPanel>
         </>
     );

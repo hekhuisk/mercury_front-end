@@ -10,8 +10,6 @@ import MUIPaper from '@material-ui/core/Paper';
 
 import TableHead from "./TableHead";
 
-
-
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
         return -1;
@@ -44,7 +42,7 @@ const DataTable = (props) => {
         data: rows,
         defaultSortByColumn,
         RowRenderer,
-        TableToolbar
+        rowProps
     } = props;
 
     // Component state
@@ -76,7 +74,6 @@ const DataTable = (props) => {
     return (
         <div>
             <MUIPaper>
-                {TableToolbar && <TableToolbar />}
                 <MUITableContainer>
                     <MUITable size="medium">
                         <TableHead
@@ -93,6 +90,7 @@ const DataTable = (props) => {
                                         rowData={rowData}
                                         rowIndex={index}
                                         key={index}
+                                        {...rowProps}
                                     />
                                 ))
                             }

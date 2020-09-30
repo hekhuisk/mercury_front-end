@@ -7,23 +7,25 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 const ExpenseRow = (props) => {
     const {
-        rowData
+        rowData: expense,
+        handleEditExpense,
+        handleDeleteExpense
     } = props;
 
     return (
         <TableRow
-            key={rowData.description}
+            key={expense.expenseID}
         >
-            <TableCell >{rowData.description}</TableCell>
-            <TableCell >{rowData.date}</TableCell>
-            <TableCell>{rowData.category}</TableCell>
-            <TableCell>{rowData.paymentSource}</TableCell>
-            <TableCell align="right">{rowData.cost}</TableCell>
+            <TableCell >{expense.description}</TableCell>
+            <TableCell >{expense.date}</TableCell>
+            <TableCell>{expense.category}</TableCell>
+            <TableCell>{expense.paymentSource}</TableCell>
+            <TableCell align="right">{expense.cost}</TableCell>
             <TableCell align="center">
-                <IconButton aria-label="filter list">
+                <IconButton onClick={() => handleEditExpense(expense.expenseID)}>
                     <EditIcon />
                 </IconButton>
-                <IconButton aria-label="filter list">
+                <IconButton onClick={() => handleDeleteExpense(expense.expenseID)}>
                     <DeleteIcon />
                 </IconButton>
             </TableCell>

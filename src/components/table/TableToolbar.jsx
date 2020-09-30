@@ -19,7 +19,7 @@ const useToolbarStyles = makeStyles((theme) => ({
             }
 }));
 
-const TableToolbar = (props) => {
+const Toolbar = (props) => {
     const {
         children
     } = props;
@@ -35,4 +35,4 @@ const TableToolbar = (props) => {
     );
 };
 
-export default TableToolbar;
+export default Toolbar;
