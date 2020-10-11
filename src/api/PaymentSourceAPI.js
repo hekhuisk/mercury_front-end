@@ -1,49 +1,29 @@
-let internalPaymentSourceID = 1;
-
-function createPaymentSourceData(paymentSourceID, name, website) {
-    return { paymentSourceID, name, website };
-}
-
-const paymentSourceData = new Map();
-paymentSourceData.set(internalPaymentSourceID, createPaymentSourceData(internalPaymentSourceID++, 'Chase Visa', 'www.chase.come'));
-paymentSourceData.set(internalPaymentSourceID, createPaymentSourceData(internalPaymentSourceID++, 'Checking', 'www.some-bank.come'));
-paymentSourceData.set(internalPaymentSourceID, createPaymentSourceData(internalPaymentSourceID++, 'Cash', null));
+import * as FetchUtils from '../utils/FetchUtils';
 
 const createPaymentSource = (paymentSource) => {
-    const {
-        name,
-        website
-    } = paymentSource;
-
-    paymentSourceData.set(internalPaymentSourceID, createPaymentSourceData(internalPaymentSourceID++, name, website));
+    return FetchUtils.fetchPOST('/paymentSource', paymentSource);
 };
 
 const deletePaymentSource = (paymentSourceID) => {
-    paymentSourceData.delete(paymentSourceID);
+    return FetchUtils.fetchDELETE(`/paymentSource/${paymentSourceID}`);
+};
+
+const getAllPaymentSources = () => {
+    return FetchUtils.fetchGET('/paymentSource');
 }
 
-const editPaymentSource = (paymentSource) => {
-    const {
-        name,
-        paymentSourceID,
-        website
-    } = paymentSource;
-
-    paymentSourceData.set(paymentSourceID, createPaymentSourceData(paymentSourceID, name, website));
-};
-
 const getPaymentSource = (paymentSourceID) => {
-    return paymentSourceData.get(paymentSourceID);
+    return FetchUtils.fetchGET(`/paymentSource/${paymentSourceID}`);
 };
 
-const getPaymentSources = () => {
-    return Array.from(paymentSourceData.values());
+const updatePaymentSource = (paymentSourceID, paymentSource) => {
+    return FetchUtils.fetchPUT(`/paymentSource/${paymentSourceID}`, paymentSource);
 };
 
 export {
     createPaymentSource,
     deletePaymentSource,
-    editPaymentSource,
+    getAllPaymentSources,
     getPaymentSource,
-    getPaymentSources
+    updatePaymentSource
 };

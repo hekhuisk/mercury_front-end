@@ -1,46 +1,29 @@
-let internalExpenseID = 1;
-
-function createExpenseData(expenseID, description, date, category, paymentSource, cost) {
-    return { expenseID, description, date, category, paymentSource, cost };
-}
-
-const expenseData = new Map();
-expenseData.set(internalExpenseID, createExpenseData(internalExpenseID++, 'Gemmens', '10/10/2020', 'Home - Maintenance', 'Visa', 4.30));
-expenseData.set(internalExpenseID, createExpenseData(internalExpenseID++, 'Mobile', '10/10/2020', 'Vehicle - Gas', 'Visa', 10.50));
-expenseData.set(internalExpenseID, createExpenseData(internalExpenseID++, 'Meijer', '10/10/2020', 'Grocery', 'Visa', 50.10));
+import * as FetchUtils from '../utils/FetchUtils';
 
 const createExpense = (expense) => {
-    const {
-        description, date, category, paymentSource, cost
-    } = expense;
-
-    expenseData.set(internalExpenseID, createExpenseData(internalExpenseID++, description, date, category, paymentSource, cost));
+    return FetchUtils.fetchPOST('/expense', expense);
 };
 
 const deleteExpense = (expenseID) => {
-    expenseData.delete(expenseID);
+    return FetchUtils.fetchDELETE(`/expense/${expenseID}`);
+};
+
+const getAllExpenses = () => {
+    return FetchUtils.fetchGET('/expense');
 }
 
-const editExpense = (expense) => {
-    const {
-        expenseID, description, date, category, paymentSource, cost
-    } = expense;
-
-    expenseData.set(expenseID, createExpenseData(expenseID, description, date, category, paymentSource, cost));
-};
-
 const getExpense = (expenseID) => {
-    return expenseData.get(expenseID);
+    return FetchUtils.fetchGET(`/expense/${expenseID}`);
 };
 
-const getExpenses = () => {
-    return Array.from(expenseData.values());
+const updateExpense = (expenseID, expense) => {
+    return FetchUtils.fetchPUT(`/expense/${expenseID}`, expense);
 };
 
 export {
     createExpense,
     deleteExpense,
-    editExpense,
+    getAllExpenses,
     getExpense,
-    getExpenses
+    updateExpense
 };

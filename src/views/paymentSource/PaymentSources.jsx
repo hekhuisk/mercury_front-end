@@ -15,7 +15,7 @@ const PaymentSources = () => {
     const [paymentSources, setPaymentSources] = React.useState([]);
 
     const fetchPaymentSources = () => {
-        setPaymentSources(paymentSourceAPI.getPaymentSources());
+        setPaymentSources(paymentSourceAPI.getAllPaymentSources());
     };
 
     React.useEffect(() => {
@@ -29,7 +29,7 @@ const PaymentSources = () => {
 
     const handleAddPaymentSourceSave = (paymentSource) => {
         paymentSourceID > 0
-            ? paymentSourceAPI.editPaymentSource(paymentSource)
+            ? paymentSourceAPI.updatePaymentSource(paymentSource)
             : paymentSourceAPI.createPaymentSource(paymentSource);
 
         handleClose();

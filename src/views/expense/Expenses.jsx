@@ -15,7 +15,7 @@ const Expenses = () => {
     const [expenses, setExpenses] = React.useState([]);
 
     const fetchExpenses = () => {
-        setExpenses(expenseAPI.getExpenses());
+        setExpenses(expenseAPI.getAllExpenses());
     };
 
     React.useEffect(() => {
@@ -29,7 +29,7 @@ const Expenses = () => {
 
     const handleAddExpenseSave = (expense) => {
         expenseID > 0
-            ? expenseAPI.editExpense(expense)
+            ? expenseAPI.updateExpense(expense)
             : expenseAPI.createExpense(expense);
 
         handleClose();

@@ -10,13 +10,10 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import TabPanel from "../components/tab/TabPanel";
 import Expenses from "./expense/Expenses";
 import PaymentSources from "./paymentSource/PaymentSources";
+import APITest from "./APITest";
+import {Link} from "react-router-dom";
 
 const NavBar = () => {
-    const [ selectedTabValue, setSelectedTabValue ] = React.useState(0);
-
-    const handleTabClick = (event, newTabValue) => {
-        setSelectedTabValue(newTabValue);
-    };
 
     return (
         <>
@@ -25,11 +22,10 @@ const NavBar = () => {
                     <Typography variant="h5" noWrap>
                         Mercury
                     </Typography>
-                    <Tabs value={selectedTabValue} onChange={handleTabClick} aria-label="simple tabs example">
-                        <Tab label="Overview" />
-                        <Tab label="Expenses"/>
-                        <Tab label="Payment Sources" />
-                    </Tabs>
+                    <Link to="/overview">Overview</Link>
+                    <Link to="/expenses">Expenses</Link>
+                    <Link to="/payment-sources">Payment Sources</Link>
+                    <Link to="/api-test">API Test</Link>
                     <div style={{
                         flexGrow: 1,
                         display: 'flex',
@@ -46,12 +42,6 @@ const NavBar = () => {
                     </div>
                 </Toolbar>
             </AppBar>
-            <TabPanel value={selectedTabValue} index={1}>
-                <Expenses />
-            </TabPanel>
-            <TabPanel value={selectedTabValue} index={2}>
-                <PaymentSources />
-            </TabPanel>
         </>
     );
 }
