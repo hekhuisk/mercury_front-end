@@ -14,8 +14,8 @@ const PaymentSources = () => {
 
     const [paymentSources, setPaymentSources] = React.useState([]);
 
-    const fetchPaymentSources = () => {
-        setPaymentSources(paymentSourceAPI.getAllPaymentSources());
+    const fetchPaymentSources = async () => {
+        setPaymentSources(await paymentSourceAPI.getAllPaymentSources());
     };
 
     React.useEffect(() => {

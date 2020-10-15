@@ -1,4 +1,4 @@
-import * as FetchUtils from '../utils/FetchUtils';
+import * as FetchUtils from '../util/FetchUtil';
 
 const createPaymentSource = (paymentSource) => {
     return FetchUtils.fetchPOST('/paymentSource', paymentSource);

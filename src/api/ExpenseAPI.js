@@ -1,4 +1,4 @@
-import * as FetchUtils from '../utils/FetchUtils';
+import * as FetchUtils from '../util/FetchUtil';
 
 const createExpense = (expense) => {
     return FetchUtils.fetchPOST('/expense', expense);

@@ -1,4 +1,4 @@
-import * as FetchUtils from '../utils/FetchUtils';
+import * as FetchUtils from '../util/FetchUtil';
 
 const createUser = (user) => {
     return FetchUtils.fetchPOST('/user', user);

@@ -39,7 +39,7 @@ function stableSort(array, comparator) {
 const DataTable = (props) => {
     const {
         columnHeaders,
-        data: rows,
+        data: rows = [],
         defaultSortByColumn,
         RowRenderer,
         rowProps

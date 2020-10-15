@@ -6,16 +6,17 @@ import AddIcon from "@material-ui/icons/Add";
 import Toolbar from "../../components/table/TableToolbar";
 import ExpenseTable from "./table/ExpenseTable";
 import SaveExpenseDialog from "./SaveExpenseDialog";
+import SaveExpenseModal from "./SaveExpenseModal";
 
 const Expenses = () => {
-    // Save dialog state
+    // Save expense modal state
     const [open, setOpen] = React.useState(false);
     const [expenseID, setExpenseID] = React.useState(0);
 
     const [expenses, setExpenses] = React.useState([]);
 
-    const fetchExpenses = () => {
-        setExpenses(expenseAPI.getAllExpenses());
+    const fetchExpenses = async () => {
+        setExpenses(await expenseAPI.getAllExpenses());
     };
 
     React.useEffect(() => {
@@ -70,7 +71,7 @@ const Expenses = () => {
                 handleDeleteExpense={handleDeleteExpense}
                 expenses={expenses}
             />
-            <SaveExpenseDialog
+            <SaveExpenseModal
                 open={open}
                 onClose={handleClose}
                 onSave={handleAddExpenseSave}
