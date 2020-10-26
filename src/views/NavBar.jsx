@@ -1,16 +1,7 @@
-import React from "react";
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import classNames from 'classnames';
-import {Link, useLocation} from "react-router-dom";
-
-import { Button, Icon } from 'semantic-ui-react'
-import { Menu } from 'semantic-ui-react'
+import { Button, Icon, Menu } from 'semantic-ui-react'
 
 const NavBar = () => {
     const location = useLocation();
@@ -37,6 +28,20 @@ const NavBar = () => {
                 to="/expenses"
             >
                 Expenses
+            </Menu.Item>
+            <Menu.Item
+                active={location.pathname === '/income'}
+                as={Link}
+                to="/income"
+            >
+                Income
+            </Menu.Item>
+            <Menu.Item
+                active={location.pathname === '/categories'}
+                as={Link}
+                to="/categories"
+            >
+                Categories
             </Menu.Item>
             <Menu.Item
                 active={location.pathname === '/payment-sources'}

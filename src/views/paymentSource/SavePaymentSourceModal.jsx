@@ -9,18 +9,14 @@ import {
     Checkbox,
     Radio,
 } from 'formik-semantic-ui';
-import {useSelector} from "react-redux";
-import {paymentSourceSelectors} from "../../redux/paymentSource";
 
-const SaveExpenseModal = (props) => {
+const SavePaymentSourceModal = (props) => {
     const {
         open,
         onClose,
         onSave,
-        expenseID
+        paymentSourceID
     } = props;
-
-    const paymentSourceOptions = useSelector(paymentSourceSelectors.getPaymentSourceDropdownOptions);
 
     return (
         <Modal
@@ -28,16 +24,18 @@ const SaveExpenseModal = (props) => {
             open={open}
         >
             <Modal.Header>
-                {expenseID > 0 ? 'Edit Expense' : 'Add Expense'}
+                {paymentSourceID > 0 ? 'Edit Payment Source' : 'Add Payment Source'}
             </Modal.Header>
             <Modal.Content>
                 <Form
                     initialValues={{
-                        paymentSourceID: ''
+                        name: '',
+                        website: ''
                     }}
                     onSubmit={onSave}
                 >
-                    <Dropdown label='Payment Source' name='paymentSourceID' options={paymentSourceOptions} />
+                    <Input label='Name' name='name' />
+                    <Input label='Website' name='website' />
                     <Button
                         color='black'
                         onClick={onClose}
@@ -45,7 +43,7 @@ const SaveExpenseModal = (props) => {
                         Cancel
                     </Button>
                     <Button.Submit>
-                        {expenseID > 0 ? 'Save' : 'Add'}
+                        {paymentSourceID > 0 ? 'Save' : 'Add'}
                     </Button.Submit>
                 </Form>
             </Modal.Content>
@@ -53,4 +51,4 @@ const SaveExpenseModal = (props) => {
     )
 }
 
-export default SaveExpenseModal
+export default SavePaymentSourceModal

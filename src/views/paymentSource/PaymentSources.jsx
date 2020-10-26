@@ -1,18 +1,21 @@
 import React from "react";
-import PaymentSourceTable from "./table/PaymentSourceTable";
-import Button from '@material-ui/core/Button';
+import PaymentSourceTable from "./PaymentSourceTable";
 import * as paymentSourceAPI from "../../api/PaymentSourceAPI";
-import Typography from "@material-ui/core/Typography";
-import AddIcon from "@material-ui/icons/Add";
-import Toolbar from "../../components/table/TableToolbar";
-import SavePaymentSourceDialog from "./SavePaymentSourceDialog";
+
+import SavePaymentSourceModal from "./SavePaymentSourceModal";
+
+import { Button, Header, Icon } from 'semantic-ui-react'
+import {useSelector} from "react-redux";
+import {userSelectors} from "../../redux/user";
 
 const PaymentSources = () => {
-    // Save dialog state
+    // Save payment source modal state
     const [open, setOpen] = React.useState(false);
     const [paymentSourceID, setPaymentSourceID] = React.useState(0);
 
     const [paymentSources, setPaymentSources] = React.useState([]);
+
+    const userID = useSelector(userSelectors.getUserID);
 
     const fetchPaymentSources = async () => {
         setPaymentSources(await paymentSourceAPI.getAllPaymentSources());
@@ -27,10 +30,11 @@ const PaymentSources = () => {
         fetchPaymentSources();
     };
 
-    const handleAddPaymentSourceSave = (paymentSource) => {
+    const handleSavePaymentSource = async (paymentSource) => {
+        paymentSource.userID = userID;
         paymentSourceID > 0
-            ? paymentSourceAPI.updatePaymentSource(paymentSource)
-            : paymentSourceAPI.createPaymentSource(paymentSource);
+            ? await paymentSourceAPI.updatePaymentSource(paymentSource)
+            : await paymentSourceAPI.createPaymentSource(paymentSource);
 
         handleClose();
     };
@@ -45,35 +49,33 @@ const PaymentSources = () => {
         setOpen(true);
     };
 
-    const handleDeletePaymentSource = (paymentSourceID) => {
-        paymentSourceAPI.deletePaymentSource(paymentSourceID);
+    const handleDeletePaymentSource = async (paymentSourceID) => {
+        await paymentSourceAPI.deletePaymentSource(paymentSourceID);
         handleClose();
     }
 
     return (
         <div>
-            <Toolbar>
-                <Typography style={{flex: '1 1 100%'}} variant="h6" id="tableTitle" component="div">
-                    Payment Sources
-                </Typography>
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    startIcon={<AddIcon />}
-                    onClick={handleAddPaymentSource}
-                >
-                    Add Payment Source
-                </Button>
-            </Toolbar>
+            <Header>
+                Payment Sources
+            </Header>
+            <Button
+                icon
+                labelPosition='left'
+                onClick={handleAddPaymentSource}
+            >
+                <Icon name='add' />
+                Add Payment Source
+            </Button>
             <PaymentSourceTable
                 handleEditPaymentSource={handleEditPaymentSource}
                 handleDeletePaymentSource={handleDeletePaymentSource}
                 paymentSources={paymentSources}
             />
-            <SavePaymentSourceDialog
+            <SavePaymentSourceModal
                 open={open}
                 onClose={handleClose}
-                onSave={handleAddPaymentSourceSave}
+                onSave={handleSavePaymentSource}
                 paymentSourceID={paymentSourceID}
             />
         </div>

@@ -1,12 +1,8 @@
 import React from "react";
-import Button from '@material-ui/core/Button';
 import * as expenseAPI from "../../api/ExpenseAPI";
-import Typography from "@material-ui/core/Typography";
-import AddIcon from "@material-ui/icons/Add";
-import Toolbar from "../../components/table/TableToolbar";
-import ExpenseTable from "./table/ExpenseTable";
-import SaveExpenseDialog from "./SaveExpenseDialog";
+import ExpenseTable from "./ExpenseTable";
 import SaveExpenseModal from "./SaveExpenseModal";
+import { Button, Header, Icon } from "semantic-ui-react";
 
 const Expenses = () => {
     // Save expense modal state
@@ -53,19 +49,17 @@ const Expenses = () => {
 
     return (
         <div>
-            <Toolbar>
-                <Typography style={{flex: '1 1 100%'}} variant="h6" id="tableTitle" component="div">
-                    Expenses
-                </Typography>
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    startIcon={<AddIcon />}
-                    onClick={handleAddExpense}
-                >
-                    Add Expense
-                </Button>
-            </Toolbar>
+            <Header>
+                Expenses
+            </Header>
+            <Button
+                icon
+                labelPosition='left'
+                onClick={handleAddExpense}
+            >
+                <Icon name='add' />
+                Add Expense
+            </Button>
             <ExpenseTable
                 handleEditExpense={handleEditExpense}
                 handleDeleteExpense={handleDeleteExpense}

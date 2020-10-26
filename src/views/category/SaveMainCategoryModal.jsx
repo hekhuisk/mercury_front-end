@@ -9,18 +9,19 @@ import {
     Checkbox,
     Radio,
 } from 'formik-semantic-ui';
-import {useSelector} from "react-redux";
-import {paymentSourceSelectors} from "../../redux/paymentSource";
 
-const SaveExpenseModal = (props) => {
+const categoryTypeOptions = [
+    { key: 'e', text: 'Expense', value: 'EXPENSE'},
+    { key: 'i', text: 'Income', value: 'INCOME'}
+];
+
+const SaveMainCategoryModal = (props) => {
     const {
         open,
         onClose,
         onSave,
-        expenseID
+        mainCategoryID
     } = props;
-
-    const paymentSourceOptions = useSelector(paymentSourceSelectors.getPaymentSourceDropdownOptions);
 
     return (
         <Modal
@@ -28,16 +29,18 @@ const SaveExpenseModal = (props) => {
             open={open}
         >
             <Modal.Header>
-                {expenseID > 0 ? 'Edit Expense' : 'Add Expense'}
+                {mainCategoryID > 0 ? 'Edit Main Category' : 'Add Main Category'}
             </Modal.Header>
             <Modal.Content>
                 <Form
                     initialValues={{
-                        paymentSourceID: ''
+                        name: '',
+                        categoryType: ''
                     }}
                     onSubmit={onSave}
                 >
-                    <Dropdown label='Payment Source' name='paymentSourceID' options={paymentSourceOptions} />
+                    <Input label='Name' name='name' />
+                    <Dropdown label='Category Type' name='categoryType' options={categoryTypeOptions} />
                     <Button
                         color='black'
                         onClick={onClose}
@@ -45,7 +48,7 @@ const SaveExpenseModal = (props) => {
                         Cancel
                     </Button>
                     <Button.Submit>
-                        {expenseID > 0 ? 'Save' : 'Add'}
+                        {mainCategoryID > 0 ? 'Save' : 'Add'}
                     </Button.Submit>
                 </Form>
             </Modal.Content>
@@ -53,4 +56,4 @@ const SaveExpenseModal = (props) => {
     )
 }
 
-export default SaveExpenseModal
+export default SaveMainCategoryModal

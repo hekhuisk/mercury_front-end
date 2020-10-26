@@ -85,7 +85,6 @@ const doFetchCall = (url, content = {}, method, fetchOptions = {}) => {
 
     return fetch(url, options)
         .then((response) => response.json())
-        .then((data) => console.log(data))
         .catch((error) => {
             if (DEVELOPER_MODE) {
                 console.error(error);
