@@ -1,23 +1,23 @@
-import * as FetchUtils from '../util/FetchUtil';
+import * as FetchUtil from '../util/FetchUtil';
 
 const createUser = (user) => {
-    return FetchUtils.fetchPOST('/user', user);
+    return FetchUtil.fetchPOST('/user', user);
 };
 
 const deleteUser = (userID) => {
-    return FetchUtils.fetchDELETE(`/user/${userID}`);
+    return FetchUtil.fetchDELETE(`/user/${userID}`);
 };
 
 const getAllUsers = () => {
-    return FetchUtils.fetchGET('/user');
+    return FetchUtil.fetchGET('/user');
 }
 
 const getUser = (userID) => {
-    return FetchUtils.fetchGET(`/user/${userID}`);
+    return FetchUtil.fetchGET(`/user/${userID}`);
 };
 
 const updateUser = (userID, user) => {
-    return FetchUtils.fetchPUT(`/user/${userID}`, user);
+    return FetchUtil.fetchPUT(`/user/${userID}`, user);
 };
 
 export {

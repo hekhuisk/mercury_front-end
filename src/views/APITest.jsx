@@ -1,28 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 
-import * as budgetAPI from "../api/BudgetAPI";
 import * as userAPI from "../api/UserAPI";
-
-const handleCreateBudget = () => {
-    budgetAPI.createBudget();
-};
-
-const handleDeleteBudget = () => {
-    budgetAPI.deleteBudget();
-};
-
-const handleGetAllBudget = () => {
-    budgetAPI.getAllBudgets();
-};
-
-const handleGetBudget = () => {
-    budgetAPI.getBudget();
-};
-
-const handleUpdateBudget = () => {
-    budgetAPI.updateBudget();
-};
 
 const handleCreateUser = () => {
     const user = {
@@ -55,44 +34,6 @@ const handleUpdateUser = () => {
 const APITest = () => {
     return (
         <div style={{display: 'flex', flexDirection: 'column'}}>
-            <label>Budget API Test</label>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={handleCreateBudget}
-            >
-                Create Budget
-            </Button>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={handleDeleteBudget}
-            >
-                Delete Budget
-            </Button>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={handleGetAllBudget}
-            >
-                Get All Budget
-            </Button>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={handleGetBudget}
-            >
-                Get Budget
-            </Button>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={handleUpdateBudget}
-            >
-                Update Budget
-            </Button>
-
-
             <label>Category API Test</label>
 
             <label>Debt API Test</label>

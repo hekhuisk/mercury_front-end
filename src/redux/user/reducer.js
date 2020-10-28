@@ -1,7 +1,6 @@
 import * as types from './types';
 
 const initialState = {
-    budgetID: 1,
     userID: 1
 };
 

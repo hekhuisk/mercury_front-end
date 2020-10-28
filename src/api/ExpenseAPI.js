@@ -1,23 +1,23 @@
-import * as FetchUtils from '../util/FetchUtil';
+import * as FetchUtil from '../util/FetchUtil';
 
 const createExpense = (expense) => {
-    return FetchUtils.fetchPOST('/expense', expense);
+    return FetchUtil.fetchPOST('/expense', expense);
 };
 
 const deleteExpense = (expenseID) => {
-    return FetchUtils.fetchDELETE(`/expense/${expenseID}`);
+    return FetchUtil.fetchDELETE(`/expense/${expenseID}`);
 };
 
 const getAllExpenses = () => {
-    return FetchUtils.fetchGET('/expense');
+    return FetchUtil.fetchGET('/expense');
 }
 
 const getExpense = (expenseID) => {
-    return FetchUtils.fetchGET(`/expense/${expenseID}`);
+    return FetchUtil.fetchGET(`/expense/${expenseID}`);
 };
 
 const updateExpense = (expenseID, expense) => {
-    return FetchUtils.fetchPUT(`/expense/${expenseID}`, expense);
+    return FetchUtil.fetchPUT(`/expense/${expenseID}`, expense);
 };
 
 export {

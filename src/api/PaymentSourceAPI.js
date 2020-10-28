@@ -1,23 +1,23 @@
-import * as FetchUtils from '../util/FetchUtil';
+import * as FetchUtil from '../util/FetchUtil';
 
 const createPaymentSource = (paymentSource) => {
-    return FetchUtils.fetchPOST('/paymentSource', paymentSource);
+    return FetchUtil.fetchPOST('/paymentSource', paymentSource);
 };
 
 const deletePaymentSource = (paymentSourceID) => {
-    return FetchUtils.fetchDELETE(`/paymentSource/${paymentSourceID}`);
+    return FetchUtil.fetchDELETE(`/paymentSource/${paymentSourceID}`);
 };
 
 const getAllPaymentSources = () => {
-    return FetchUtils.fetchGET('/paymentSource');
+    return FetchUtil.fetchGET('/paymentSource');
 }
 
 const getPaymentSource = (paymentSourceID) => {
-    return FetchUtils.fetchGET(`/paymentSource/${paymentSourceID}`);
+    return FetchUtil.fetchGET(`/paymentSource/${paymentSourceID}`);
 };
 
 const updatePaymentSource = (paymentSourceID, paymentSource) => {
-    return FetchUtils.fetchPUT(`/paymentSource/${paymentSourceID}`, paymentSource);
+    return FetchUtil.fetchPUT(`/paymentSource/${paymentSourceID}`, paymentSource);
 };
 
 export {

@@ -3,12 +3,13 @@ import CategoriesTable from "./CategoriesTable";
 import {Button, Header, Icon} from "semantic-ui-react";
 import SaveMainCategoryModal from "./SaveMainCategoryModal";
 import SaveSubCategoryModal from "./SaveSubCategoryModal";
+import * as categoryAPI from "../../api/CategoryAPI";
 
 const expenseCategoryGroupingsTestData = [
     {
         categoryType: 'EXPENSE',
         mainCategory: {
-            budgetID: 1,
+            userID: 1,
             mainCategoryID: 1,
             name: 'Home'
         },
@@ -33,7 +34,7 @@ const expenseCategoryGroupingsTestData = [
     {
         categoryType: 'EXPENSE',
         mainCategory: {
-            budgetID: 1,
+            userID: 1,
             mainCategoryID: 2,
             name: 'Insurance'
         },
@@ -61,7 +62,7 @@ const incomeCategoryGroupingsTestData = [
     {
         categoryType: 'INCOME',
         mainCategory: {
-            budgetID: 1,
+            userID: 1,
             mainCategoryID: 3,
             name: 'Work'
         },
@@ -89,8 +90,8 @@ const Categories = () => {
     const [incomeCategoryGroupings, setIncomeCategoryGroupings] = React.useState([]);
 
     const fetchCategoryGroupings = async () => {
-        setExpenseCategoryGroupings(expenseCategoryGroupingsTestData);
-        setIncomeCategoryGroupings(incomeCategoryGroupingsTestData);
+        setExpenseCategoryGroupings(await categoryAPI.getCategoryGroupings('EXPENSE'));
+        setIncomeCategoryGroupings(await categoryAPI.getCategoryGroupings('INCOME'));
     };
 
     React.useEffect(() => {
@@ -104,9 +105,8 @@ const Categories = () => {
 
     const handleSaveMainCategory = async (mainCategory) => {
         mainCategory.userID = 1;
-        mainCategory.budgetID = 1;
 
-        console.log(mainCategory);
+        await categoryAPI.createMainCategory(mainCategory);
 
         handleCloseMain();
     };
@@ -117,7 +117,7 @@ const Categories = () => {
     };
 
     const handleSaveSubCategory = async (subCategory) => {
-        console.log(subCategory);
+        await categoryAPI.createSubCategory(subCategory);
 
         handleCloseSub();
     };
