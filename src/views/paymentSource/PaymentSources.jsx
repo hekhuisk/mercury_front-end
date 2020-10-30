@@ -1,11 +1,12 @@
 import React from "react";
 import PaymentSourceTable from "./PaymentSourceTable";
+import { paymentSourceActions, paymentSourceSelectors } from '../../redux/paymentSource';
 import * as paymentSourceAPI from "../../api/PaymentSourceAPI";
 
 import SavePaymentSourceModal from "./SavePaymentSourceModal";
 
 import { Button, Header, Icon } from 'semantic-ui-react'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {userSelectors} from "../../redux/user";
 
 const PaymentSources = () => {
@@ -13,21 +14,23 @@ const PaymentSources = () => {
     const [open, setOpen] = React.useState(false);
     const [paymentSourceID, setPaymentSourceID] = React.useState(0);
 
-    const [paymentSources, setPaymentSources] = React.useState([]);
+    const [doFetch, setDoFetch] = React.useState(true);
 
+    const dispatch = useDispatch();
+
+    const paymentSources = useSelector(paymentSourceSelectors.getPaymentSourcesAsArray);
     const userID = useSelector(userSelectors.getUserID);
 
-    const fetchPaymentSources = async () => {
-        setPaymentSources(await paymentSourceAPI.getAllPaymentSources());
-    };
-
     React.useEffect(() => {
-        fetchPaymentSources();
-    }, []);
+        if (doFetch) {
+            setDoFetch(false);
+            dispatch(paymentSourceActions.fetchPaymentSources());
+        }
+    }, [doFetch]);
 
-    const handleClose = () => {
+    const handleClose = (doFetch = false) => {
         setOpen(false);
-        fetchPaymentSources();
+        setDoFetch(doFetch);
     };
 
     const handleSavePaymentSource = async (paymentSource) => {
@@ -36,7 +39,7 @@ const PaymentSources = () => {
             ? await paymentSourceAPI.updatePaymentSource(paymentSource)
             : await paymentSourceAPI.createPaymentSource(paymentSource);
 
-        handleClose();
+        handleClose(true);
     };
 
     const handleAddPaymentSource = () => {
