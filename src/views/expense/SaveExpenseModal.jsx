@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal } from 'semantic-ui-react'
+import {Modal} from 'semantic-ui-react'
 
 import {
     Button,
@@ -11,6 +11,7 @@ import {
 } from 'formik-semantic-ui';
 import {useSelector} from "react-redux";
 import {paymentSourceSelectors} from "../../redux/paymentSource";
+import {categorySelectors} from "../../redux/category";
 
 const SaveExpenseModal = (props) => {
     const {
@@ -20,6 +21,7 @@ const SaveExpenseModal = (props) => {
         expenseID
     } = props;
 
+    const expenseCategoryOptions = useSelector(categorySelectors.getExpenseCategoriesDropdownOptions);
     const paymentSourceOptions = useSelector(paymentSourceSelectors.getPaymentSourceDropdownOptions);
 
     return (
@@ -33,11 +35,22 @@ const SaveExpenseModal = (props) => {
             <Modal.Content>
                 <Form
                     initialValues={{
-                        paymentSourceID: ''
+                        paymentSourceID: '',
+                        category: '',
+                        amount: '',
+                        currency: 'USD',
+                        majorPurchase: false,
+                        description: '',
+                        expenseDate: ''
                     }}
                     onSubmit={onSave}
                 >
+                    <Input label='Amount' name='amount' />
+                    <Input label='Description' name='description' />
+                    <Input label='Date' name='expenseDate' />
+                    <Dropdown label='Category' name='category' options={expenseCategoryOptions} />
                     <Dropdown label='Payment Source' name='paymentSourceID' options={paymentSourceOptions} />
+                    <Checkbox label='Major Purchase' name='majorPurchase' />
                     <Button
                         color='black'
                         onClick={onClose}

@@ -10,9 +10,15 @@ import {
     Radio,
 } from 'formik-semantic-ui';
 
-const mainCategoryOptions = [
-    { key: 'home', text: 'Home', value: 1},
-    { key: 'insurance', text: 'Insurance', value: 2}
+import {
+    Dropdown as SemanticDropdown
+} from 'semantic-ui-react';
+import {useSelector} from "react-redux";
+import {categorySelectors} from "../../redux/category";
+
+const categoryTypeOptions = [
+    { key: 'e', text: 'Expense', value: 'EXPENSE'},
+    { key: 'i', text: 'Income', value: 'INCOME'}
 ];
 
 const SaveSubCategoryModal = (props) => {
@@ -22,6 +28,15 @@ const SaveSubCategoryModal = (props) => {
         onSave,
         subCategoryID
     } = props;
+
+    const [categoryType, setCategoryType] = React.useState('EXPENSE');
+
+    const expenseMainCategoryOptions = useSelector(categorySelectors.getExpenseMainCategoriesDropdownOptions);
+    const incomeMainCategoryOptions = useSelector(categorySelectors.getIncomeMainCategoriesDropdownOptions);
+
+    const mainCategoryOptions = categoryType === 'EXPENSE'
+        ? expenseMainCategoryOptions
+        : incomeMainCategoryOptions;
 
     return (
         <Modal
@@ -40,6 +55,12 @@ const SaveSubCategoryModal = (props) => {
                     onSubmit={onSave}
                 >
                     <Input label='Name' name='name' />
+                    <SemanticDropdown
+                        label='Category Type'
+                        options={categoryTypeOptions}
+                        onChange={(e, { value }) => setCategoryType(value)}
+                        value={categoryType}
+                    />
                     <Dropdown label='Main Category' name='mainCategoryID' options={mainCategoryOptions} />
                     <Button
                         color='black'

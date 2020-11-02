@@ -3,11 +3,16 @@ import * as expenseAPI from "../../api/ExpenseAPI";
 import ExpenseTable from "./ExpenseTable";
 import SaveExpenseModal from "./SaveExpenseModal";
 import { Button, Header, Icon } from "semantic-ui-react";
+import {getUserID} from "../../redux/user/selectors";
+import {useSelector} from "react-redux";
+import {userSelectors} from "../../redux/user";
 
 const Expenses = () => {
     // Save expense modal state
     const [open, setOpen] = React.useState(false);
     const [expenseID, setExpenseID] = React.useState(0);
+
+    const userID = useSelector(userSelectors.getUserID);
 
     const [expenses, setExpenses] = React.useState([]);
 
@@ -25,6 +30,23 @@ const Expenses = () => {
     };
 
     const handleAddExpenseSave = (expense) => {
+        const categoryIDs = JSON.parse(expense.category);
+
+        expense = {
+            ...expense,
+            ...categoryIDs,
+            amount: {
+                amount: expense.amount,
+                currency: expense.currency
+            },
+            userID
+        }
+
+        delete expense.category;
+        delete expense.currency;
+
+        console.log(expense);
+
         expenseID > 0
             ? expenseAPI.updateExpense(expense)
             : expenseAPI.createExpense(expense);

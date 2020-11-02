@@ -4,6 +4,9 @@ import {Button, Header, Icon} from "semantic-ui-react";
 import SaveMainCategoryModal from "./SaveMainCategoryModal";
 import SaveSubCategoryModal from "./SaveSubCategoryModal";
 import * as categoryAPI from "../../api/CategoryAPI";
+import {useDispatch, useSelector} from "react-redux";
+import {categoryActions, categorySelectors} from "../../redux/category";
+import {paymentSourceActions} from "../../redux/paymentSource";
 
 const expenseCategoryGroupingsTestData = [
     {
@@ -86,21 +89,23 @@ const Categories = () => {
     const [openMain, setOpenMain] = React.useState(false);
     const [openSub, setOpenSub] = React.useState(false);
 
-    const [expenseCategoryGroupings, setExpenseCategoryGroupings] = React.useState([]);
-    const [incomeCategoryGroupings, setIncomeCategoryGroupings] = React.useState([]);
+    const [doFetch, setDoFetch] = React.useState(true);
 
-    const fetchCategoryGroupings = async () => {
-        setExpenseCategoryGroupings(await categoryAPI.getCategoryGroupings('EXPENSE'));
-        setIncomeCategoryGroupings(await categoryAPI.getCategoryGroupings('INCOME'));
-    };
+    const dispatch = useDispatch();
+
+    const expenseCategoryGroupings = useSelector(categorySelectors.getExpenseCategoriesAsArray);
+    const incomeCategoryGroupings = useSelector(categorySelectors.getIncomeCategoriesAsArray);
 
     React.useEffect(() => {
-        fetchCategoryGroupings();
-    }, []);
+        if (doFetch) {
+            setDoFetch(false);
+            dispatch(categoryActions.fetchCategories());
+        }
+    }, [doFetch]);
 
-    const handleCloseMain = () => {
+    const handleCloseMain = (doFetch = false) => {
         setOpenMain(false);
-        fetchCategoryGroupings();
+        setDoFetch(doFetch);
     };
 
     const handleSaveMainCategory = async (mainCategory) => {
@@ -108,18 +113,18 @@ const Categories = () => {
 
         await categoryAPI.createMainCategory(mainCategory);
 
-        handleCloseMain();
+        handleCloseMain(true);
     };
 
-    const handleCloseSub = () => {
+    const handleCloseSub = (doFetch = false) => {
         setOpenSub(false);
-        fetchCategoryGroupings();
+        setDoFetch(doFetch);
     };
 
     const handleSaveSubCategory = async (subCategory) => {
         await categoryAPI.createSubCategory(subCategory);
 
-        handleCloseSub();
+        handleCloseSub(true);
     };
 
     const handleAddMainCategory = () => {
