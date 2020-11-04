@@ -43,11 +43,43 @@ const getMainCategoriesDropdownOptions = (categories) =>
         };
     });
 
+const makeGetExpenseCategoryName = (state) => (mainCategoryID, subCategoryID) => {
+    let name = '';
+    getExpenseCategoriesAsArray(state).forEach((categoryGrouping) => {
+        const mainCategory = categoryGrouping.mainCategory;
+        if (mainCategory.mainCategoryID === mainCategoryID) {
+            categoryGrouping.subCategories.forEach((subCategory) => {
+                if (subCategory.subCategoryID === subCategoryID) {
+                    name = `${mainCategory.name} - ${subCategory.name}`;
+                }
+            });
+        }
+    });
+    return name;
+};
+
+const makeGetIncomeCategoryName = (state) => (mainCategoryID, subCategoryID) => {
+    let name = '';
+    getIncomeCategoriesAsArray(state).forEach((categoryGrouping) => {
+        const mainCategory = categoryGrouping.mainCategory;
+        if (mainCategory.mainCategoryID === mainCategoryID) {
+            categoryGrouping.subCategories.forEach((subCategory) => {
+                if (subCategory.subCategoryID === subCategoryID) {
+                    name = `${mainCategory.name} - ${subCategory.name}`;
+                }
+            });
+        }
+    });
+    return name;
+};
+
 export {
     getExpenseCategoriesAsArray,
     getIncomeCategoriesAsArray,
     getExpenseCategoriesDropdownOptions,
     getExpenseMainCategoriesDropdownOptions,
     getIncomeCategoriesDropdownOptions,
-    getIncomeMainCategoriesDropdownOptions
+    getIncomeMainCategoriesDropdownOptions,
+    makeGetExpenseCategoryName,
+    makeGetIncomeCategoryName
 }

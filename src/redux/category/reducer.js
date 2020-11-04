@@ -14,10 +14,8 @@ const categoryReducer = (state = initialState, action) => {
 
         case types.CATEGORIES_FETCH_SUCCEEDED:
             return {
-                ...state,
                 expenseCategories: action.expenseCategories,
                 incomeCategories: action.incomeCategories
-
             };
 
         default:

@@ -6,7 +6,13 @@ const getPaymentSourceDropdownOptions = (state) => getPaymentSourcesAsArray(stat
     value: paymentSource.paymentSourceID
 }));
 
+const makeGetPaymentSourceName = (state) => (paymentSourceID) => {
+    const paymentSource = state.paymentSource.paymentSources[paymentSourceID];
+    return paymentSource ? paymentSource.name : '';
+}
+
 export {
     getPaymentSourcesAsArray,
-    getPaymentSourceDropdownOptions
+    getPaymentSourceDropdownOptions,
+    makeGetPaymentSourceName
 }

@@ -1,5 +1,9 @@
 import React from "react";
 import {Button, Icon, Table} from 'semantic-ui-react'
+import DateDisplay from "../../components/DateDisplay";
+import MoneyDisplay from "../../components/MoneyDisplay";
+import {useSelector} from "react-redux";
+import {categorySelectors} from "../../redux/category";
 
 const IncomeTable = (props) => {
     const {
@@ -7,6 +11,8 @@ const IncomeTable = (props) => {
         handleEditIncome,
         handleDeleteIncomes
     } = props;
+
+    const getIncomeCategoryName = useSelector(categorySelectors.makeGetIncomeCategoryName);
 
     return (
         <Table striped>
@@ -23,9 +29,9 @@ const IncomeTable = (props) => {
                 {incomes && incomes.map((income) => (
                     <Table.Row key={income.incomeID}>
                         <Table.Cell>{income.description}</Table.Cell>
-                        <Table.Cell>{income.incomeDate}</Table.Cell>
-                        <Table.Cell>{income.category}</Table.Cell>
-                        <Table.Cell>{income.amount}</Table.Cell>
+                        <Table.Cell><DateDisplay date={income.incomeDate} /></Table.Cell>
+                        <Table.Cell>{getIncomeCategoryName(income.mainCategoryID, income.subCategoryID)}</Table.Cell>
+                        <Table.Cell><MoneyDisplay amount={income.amount.amount} currency={income.amount.currency} /></Table.Cell>
                         <Table.Cell>
                             <Button
                                 icon

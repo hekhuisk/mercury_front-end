@@ -3,16 +3,20 @@ import * as incomeAPI from "../../api/IncomeAPI";
 import IncomeTable from "./IncomeTable";
 import SaveIncomeModal from "./SaveIncomeModal";
 import { Button, Header, Icon } from "semantic-ui-react";
+import {useSelector} from "react-redux";
+import {userSelectors} from "../../redux/user";
 
 const Income = () => {
     // Save income modal state
     const [open, setOpen] = React.useState(false);
     const [incomeID, setIncomeID] = React.useState(0);
 
+    const userID = useSelector(userSelectors.getUserID);
+
     const [incomes, setIncomes] = React.useState([]);
 
     const fetchIncomes = async () => {
-        //setIncomes(await incomeAPI.getAllIncomes());
+        setIncomes(await incomeAPI.getAllIncomes());
     };
 
     React.useEffect(() => {
@@ -25,9 +29,26 @@ const Income = () => {
     };
 
     const handleAddIncomeSave = (income) => {
-        // incomeID > 0
-        //     ? incomeAPI.updateIncome(income)
-        //     : incomeAPI.createIncome(income);
+        const categoryIDs = JSON.parse(income.category);
+
+        income = {
+            ...income,
+            ...categoryIDs,
+            amount: {
+                amount: income.amount,
+                currency: income.currency
+            },
+            userID
+        }
+
+        delete income.category;
+        delete income.currency;
+
+        console.log(income);
+
+        incomeID > 0
+            ? incomeAPI.updateIncome(income)
+            : incomeAPI.createIncome(income);
 
         handleClose();
     };

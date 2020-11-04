@@ -1,5 +1,16 @@
 import React from 'react'
-import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import {Modal} from 'semantic-ui-react'
+
+import {
+    Button,
+    Dropdown,
+    Form,
+    Input,
+    Checkbox,
+    Radio,
+} from 'formik-semantic-ui';
+import {useSelector} from "react-redux";
+import {categorySelectors} from "../../redux/category";
 
 const SaveIncomeModal = (props) => {
     const {
@@ -8,6 +19,8 @@ const SaveIncomeModal = (props) => {
         onSave,
         incomeID
     } = props;
+
+    const incomeCategoryOptions = useSelector(categorySelectors.getIncomeCategoriesDropdownOptions);
 
     return (
         <Modal
@@ -18,28 +31,31 @@ const SaveIncomeModal = (props) => {
                 {incomeID > 0 ? 'Edit Income' : 'Add Income'}
             </Modal.Header>
             <Modal.Content>
-                <Modal.Description>
-                    <Header>Default Profile Image</Header>
-                    <p>
-                        We've found the following gravatar image associated with your e-mail
-                        address.
-                    </p>
-                    <p>Is it okay to use this photo?</p>
-                </Modal.Description>
-            </Modal.Content>
-            <Modal.Actions>
-                <Button
-                    color='black'
-                    onClick={onClose}
+                <Form
+                    initialValues={{
+                        category: '',
+                        amount: '',
+                        currency: 'USD',
+                        description: '',
+                        incomeDate: ''
+                    }}
+                    onSubmit={onSave}
                 >
-                    Cancel
-                </Button>
-                <Button
-                    content={incomeID > 0 ? 'Save' : 'Add'}
-                    onClick={onSave}
-                    positive
-                />
-            </Modal.Actions>
+                    <Input label='Amount' name='amount' />
+                    <Input label='Description' name='description' />
+                    <Input label='Date' name='incomeDate' />
+                    <Dropdown label='Category' name='category' options={incomeCategoryOptions} />
+                    <Button
+                        color='black'
+                        onClick={onClose}
+                    >
+                        Cancel
+                    </Button>
+                    <Button.Submit>
+                        {incomeID > 0 ? 'Save' : 'Add'}
+                    </Button.Submit>
+                </Form>
+            </Modal.Content>
         </Modal>
     )
 }

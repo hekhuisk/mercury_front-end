@@ -3,7 +3,6 @@ import * as expenseAPI from "../../api/ExpenseAPI";
 import ExpenseTable from "./ExpenseTable";
 import SaveExpenseModal from "./SaveExpenseModal";
 import { Button, Header, Icon } from "semantic-ui-react";
-import {getUserID} from "../../redux/user/selectors";
 import {useSelector} from "react-redux";
 import {userSelectors} from "../../redux/user";
 
