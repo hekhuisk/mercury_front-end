@@ -28,7 +28,7 @@ const Income = () => {
         fetchIncomes();
     };
 
-    const handleAddIncomeSave = (income) => {
+    const handleAddIncomeSave = async (income) => {
         const categoryIDs = JSON.parse(income.category);
 
         income = {
@@ -47,8 +47,8 @@ const Income = () => {
         console.log(income);
 
         incomeID > 0
-            ? incomeAPI.updateIncome(income)
-            : incomeAPI.createIncome(income);
+            ? await incomeAPI.updateIncome(income)
+            : await incomeAPI.createIncome(income);
 
         handleClose();
     };

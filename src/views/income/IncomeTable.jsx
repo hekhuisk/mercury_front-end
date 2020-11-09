@@ -31,7 +31,7 @@ const IncomeTable = (props) => {
                         <Table.Cell>{income.description}</Table.Cell>
                         <Table.Cell><DateDisplay date={income.incomeDate} /></Table.Cell>
                         <Table.Cell>{getIncomeCategoryName(income.mainCategoryID, income.subCategoryID)}</Table.Cell>
-                        <Table.Cell><MoneyDisplay amount={income.amount.amount} currency={income.amount.currency} /></Table.Cell>
+                        <Table.Cell textAlign='right'><MoneyDisplay amount={income.amount.amount} currency={income.amount.currency} /></Table.Cell>
                         <Table.Cell>
                             <Button
                                 icon

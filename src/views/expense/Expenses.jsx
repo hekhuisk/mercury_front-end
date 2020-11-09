@@ -28,7 +28,7 @@ const Expenses = () => {
         fetchExpenses();
     };
 
-    const handleAddExpenseSave = (expense) => {
+    const handleAddExpenseSave = async (expense) => {
         const categoryIDs = JSON.parse(expense.category);
 
         expense = {
@@ -47,8 +47,8 @@ const Expenses = () => {
         console.log(expense);
 
         expenseID > 0
-            ? expenseAPI.updateExpense(expense)
-            : expenseAPI.createExpense(expense);
+            ? await expenseAPI.updateExpense(expense)
+            : await expenseAPI.createExpense(expense);
 
         handleClose();
     };

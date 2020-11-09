@@ -36,7 +36,7 @@ const ExpenseTable = (props) => {
                         <Table.Cell><DateDisplay date={expense.expenseDate} /></Table.Cell>
                         <Table.Cell>{getExpenseCategoryName(expense.mainCategoryID, expense.subCategoryID)}</Table.Cell>
                         <Table.Cell>{getPaymentSourceName(expense.paymentSourceID)}</Table.Cell>
-                        <Table.Cell><MoneyDisplay amount={expense.amount.amount} currency={expense.amount.currency} /></Table.Cell>
+                        <Table.Cell textAlign='right'><MoneyDisplay amount={expense.amount.amount} currency={expense.amount.currency} /></Table.Cell>
                         <Table.Cell>{expense.majorPurchase ? 'Yes' : undefined}</Table.Cell>
                         <Table.Cell>
                             <Button
