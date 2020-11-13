@@ -50,13 +50,6 @@ const NavBar = () => {
             >
                 Payment Sources
             </Menu.Item>
-            <Menu.Item
-                active={location.pathname === '/api-test'}
-                as={Link}
-                to="/api-test"
-            >
-                API Test
-            </Menu.Item>
             <Menu.Item position='right'>
                 <Button
                     circular

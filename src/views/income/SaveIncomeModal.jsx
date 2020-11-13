@@ -35,7 +35,6 @@ const SaveIncomeModal = (props) => {
                     initialValues={{
                         category: '',
                         amount: '',
-                        currency: 'USD',
                         description: '',
                         incomeDate: ''
                     }}

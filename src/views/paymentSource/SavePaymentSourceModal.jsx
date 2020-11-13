@@ -3,11 +3,8 @@ import { Modal } from 'semantic-ui-react'
 
 import {
     Button,
-    Dropdown,
     Form,
     Input,
-    Checkbox,
-    Radio,
 } from 'formik-semantic-ui';
 
 const SavePaymentSourceModal = (props) => {

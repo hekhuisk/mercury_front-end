@@ -38,7 +38,6 @@ const SaveExpenseModal = (props) => {
                         paymentSourceID: '',
                         category: '',
                         amount: '',
-                        currency: 'USD',
                         majorPurchase: false,
                         description: '',
                         expenseDate: ''

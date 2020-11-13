@@ -1,6 +1,6 @@
 import React from "react";
 import {Button, Icon, Table} from 'semantic-ui-react'
-import URLLink from "../../components/URLLink";
+import URLLink from "../URLLink";
 
 const PaymentSourceTable = (props) => {
     const {

@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Icon, Table} from 'semantic-ui-react'
-import MoneyDisplay from "../../components/MoneyDisplay";
-import DateDisplay from "../../components/DateDisplay";
+import MoneyDisplay from "../MoneyDisplay";
+import DateDisplay from "../DateDisplay";
 import {useSelector} from "react-redux";
 import { categorySelectors } from "../../redux/category";
 import { paymentSourceSelectors } from "../../redux/paymentSource";
@@ -13,7 +13,7 @@ const ExpenseTable = (props) => {
         handleDeleteExpense
     } = props;
 
-    const getExpenseCategoryName = useSelector(categorySelectors.makeGetExpenseCategoryName);
+    const getExpenseCategoryName = useSelector((state) => categorySelectors.makeGetExpenseCategoryName(state, 'combo'));
     const getPaymentSourceName = useSelector(paymentSourceSelectors.makeGetPaymentSourceName);
 
     return (
@@ -36,7 +36,7 @@ const ExpenseTable = (props) => {
                         <Table.Cell><DateDisplay date={expense.expenseDate} /></Table.Cell>
                         <Table.Cell>{getExpenseCategoryName(expense.mainCategoryID, expense.subCategoryID)}</Table.Cell>
                         <Table.Cell>{getPaymentSourceName(expense.paymentSourceID)}</Table.Cell>
-                        <Table.Cell textAlign='right'><MoneyDisplay amount={expense.amount.amount} currency={expense.amount.currency} /></Table.Cell>
+                        <Table.Cell textAlign='right'><MoneyDisplay amount={expense.amount} /></Table.Cell>
                         <Table.Cell>{expense.majorPurchase ? 'Yes' : undefined}</Table.Cell>
                         <Table.Cell>
                             <Button

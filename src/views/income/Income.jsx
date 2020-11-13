@@ -34,15 +34,10 @@ const Income = () => {
         income = {
             ...income,
             ...categoryIDs,
-            amount: {
-                amount: income.amount,
-                currency: income.currency
-            },
             userID
         }
 
         delete income.category;
-        delete income.currency;
 
         console.log(income);
 

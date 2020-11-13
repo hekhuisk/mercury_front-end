@@ -3,7 +3,7 @@ import React from "react";
 const MoneyDisplay = (props) => {
     const {
         amount,
-        currency
+        currency = 'USD'
     } = props;
 
     const moneyFormatter = new Intl.NumberFormat('en-US', {

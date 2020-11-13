@@ -43,34 +43,50 @@ const getMainCategoriesDropdownOptions = (categories) =>
         };
     });
 
-const makeGetExpenseCategoryName = (state) => (mainCategoryID, subCategoryID) => {
-    let name = '';
-    getExpenseCategoriesAsArray(state).forEach((categoryGrouping) => {
+const makeGetExpenseCategoryName = (state, option) => (mainCategoryID, subCategoryID) => {
+    const categoryGroupings = getExpenseCategoriesAsArray(state);
+
+    for (let i = 0; i < categoryGroupings.length; i++) {
+        const categoryGrouping = categoryGroupings[i];
         const mainCategory = categoryGrouping.mainCategory;
         if (mainCategory.mainCategoryID === mainCategoryID) {
-            categoryGrouping.subCategories.forEach((subCategory) => {
+            if (option === 'main') {
+                return mainCategory.name;
+            }
+
+            for (let j = 0; j < categoryGrouping.subCategories.length; j++) {
+                const subCategory = categoryGrouping.subCategories[j];
                 if (subCategory.subCategoryID === subCategoryID) {
-                    name = `${mainCategory.name} - ${subCategory.name}`;
+                    return option === 'combo' ? `${mainCategory.name} - ${subCategory.name}` : subCategory.name;
                 }
-            });
+            }
         }
-    });
-    return name;
+    }
+
+    return '';
 };
 
-const makeGetIncomeCategoryName = (state) => (mainCategoryID, subCategoryID) => {
-    let name = '';
-    getIncomeCategoriesAsArray(state).forEach((categoryGrouping) => {
+const makeGetIncomeCategoryName = (state, option) => (mainCategoryID, subCategoryID) => {
+    const categoryGroupings = getIncomeCategoriesAsArray(state);
+
+    for (let i = 0; i < categoryGroupings.length; i++) {
+        const categoryGrouping = categoryGroupings[i];
         const mainCategory = categoryGrouping.mainCategory;
         if (mainCategory.mainCategoryID === mainCategoryID) {
-            categoryGrouping.subCategories.forEach((subCategory) => {
+            if (option === 'main') {
+                return mainCategory.name;
+            }
+
+            for (let j = 0; j < categoryGrouping.subCategories.length; j++) {
+                const subCategory = categoryGrouping.subCategories[j];
                 if (subCategory.subCategoryID === subCategoryID) {
-                    name = `${mainCategory.name} - ${subCategory.name}`;
+                    return option === 'combo' ? `${mainCategory.name} - ${subCategory.name}` : subCategory.name;
                 }
-            });
+            }
         }
-    });
-    return name;
+    }
+
+    return '';
 };
 
 export {

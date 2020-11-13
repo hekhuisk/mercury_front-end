@@ -34,15 +34,10 @@ const Expenses = () => {
         expense = {
             ...expense,
             ...categoryIDs,
-            amount: {
-                amount: expense.amount,
-                currency: expense.currency
-            },
             userID
         }
 
         delete expense.category;
-        delete expense.currency;
 
         console.log(expense);
 
