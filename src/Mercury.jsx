@@ -7,8 +7,15 @@ import NavBar from "./views/NavBar";
 import Categories from "./views/category/Categories";
 import Income from "./views/income/Income";
 import Overview from "./views/overview/Overview";
+import {useDispatch} from "react-redux";
+import {categoryActions} from "./redux/category";
+import {paymentSourceActions} from "./redux/paymentSource";
 
 const Mercury = () => {
+    const dispatch = useDispatch();
+    dispatch(categoryActions.fetchCategories());
+    dispatch(paymentSourceActions.fetchPaymentSources());
+
     return (
         <div>
             <NavBar />
