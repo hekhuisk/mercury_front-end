@@ -27,3 +27,95 @@ a.navbar-link.active {
   border-bottom: 3px solid #FFFFFF;
   color: #FFFFFF;
 }
+
+/*table {*/
+/*  border-collapse: collapse;*/
+/*  overflow: hidden;*/
+/*}*/
+
+/*tr:hover {*/
+/*  background-color: #ffa;*/
+/*}*/
+
+/*td, th {*/
+/*  position: relative;*/
+/*}*/
+
+/*td:hover {*/
+/*  background-color: aqua;*/
+/*}*/
+
+/*td:hover::after,*/
+/*th:hover::after {*/
+/*  content: "";*/
+/*  position: absolute;*/
+/*  background-color: #ffa;*/
+/*  left: 0;*/
+/*  top: -5000px;*/
+/*  height: 10000px;*/
+/*  width: 100%;*/
+/*  z-index: -1;*/
+/*}*/
+
+
+
+
+/*table {*/
+/*  border-collapse: collapse;*/
+/*}*/
+
+/*.money-cell {*/
+/*  border: 1px solid black;*/
+/*}*/
+
+/*tr, col {*/
+/*  transition: all .1s;*/
+/*}*/
+
+/*tbody tr:hover {*/
+/*  background-color: rgba(0,140,203,.2);*/
+/*}*/
+
+/*col.hover {*/
+/*  background-color: rgba(0,140,203,.2);*/
+/*}*/
+
+
+
+table {
+  border-collapse: collapse;
+  overflow: hidden;
+}
+
+td, th {
+  position: relative;
+}
+
+tbody tr:not(.no-hover):hover {
+  background-color: #F2F2F2;
+}
+
+td:not(.no-hover):hover::after,
+thead th:not(:empty):not(.no-hover):hover::after {
+  content: '';
+  height: 10000px;
+  left: 0;
+  position: absolute;
+  top: -5000px;
+  width: 100%;
+  z-index: -1;
+}
+
+td:hover::after,
+th:hover::after {
+  background-color: #F2F2F2;
+}
+
+/* Color when row and column intersect */
+td:hover {
+  background-color: #6C7AE0;
+}
+
+tbody tr:not(.no-hover) {
+  border-bottom: 1px solid #E5E5E5;
+}

@@ -22,13 +22,9 @@ const middleware = [
     sagaMiddleware
 ]
 
-// if (process.env.NODE_ENV === 'development') {
-const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__;
-
-if (typeof devToolsExtension === 'function') {
-    enhancers.push(devToolsExtension())
+if (process.env.NODE_ENV === 'development' && typeof window.__REDUX_DEVTOOLS_EXTENSION__ === 'function') {
+    enhancers.push(window.__REDUX_DEVTOOLS_EXTENSION__())
 }
-// }
 
 const composedEnhancers = compose(
     applyMiddleware(...middleware),

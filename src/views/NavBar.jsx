@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import { Button, Icon, Menu } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 
 const NavBar = () => {
     const location = useLocation();
@@ -49,14 +49,6 @@ const NavBar = () => {
                 to="/payment-sources"
             >
                 Payment Sources
-            </Menu.Item>
-            <Menu.Item position='right'>
-                <Button
-                    circular
-                    icon
-                >
-                    <Icon name='user circle' />
-                </Button>
             </Menu.Item>
         </Menu>
     );
