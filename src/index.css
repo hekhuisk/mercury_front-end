@@ -28,60 +28,6 @@ a.navbar-link.active {
   color: #FFFFFF;
 }
 
-/*table {*/
-/*  border-collapse: collapse;*/
-/*  overflow: hidden;*/
-/*}*/
-
-/*tr:hover {*/
-/*  background-color: #ffa;*/
-/*}*/
-
-/*td, th {*/
-/*  position: relative;*/
-/*}*/
-
-/*td:hover {*/
-/*  background-color: aqua;*/
-/*}*/
-
-/*td:hover::after,*/
-/*th:hover::after {*/
-/*  content: "";*/
-/*  position: absolute;*/
-/*  background-color: #ffa;*/
-/*  left: 0;*/
-/*  top: -5000px;*/
-/*  height: 10000px;*/
-/*  width: 100%;*/
-/*  z-index: -1;*/
-/*}*/
-
-
-
-
-/*table {*/
-/*  border-collapse: collapse;*/
-/*}*/
-
-/*.money-cell {*/
-/*  border: 1px solid black;*/
-/*}*/
-
-/*tr, col {*/
-/*  transition: all .1s;*/
-/*}*/
-
-/*tbody tr:hover {*/
-/*  background-color: rgba(0,140,203,.2);*/
-/*}*/
-
-/*col.hover {*/
-/*  background-color: rgba(0,140,203,.2);*/
-/*}*/
-
-
-
 table {
   border-collapse: collapse;
   overflow: hidden;
@@ -118,4 +64,46 @@ td:hover {
 
 tbody tr:not(.no-hover) {
   border-bottom: 1px solid #E5E5E5;
+}
+
+.expense-row {
+  background-color: darkred;
+}
+
+.income-row {
+  background-color: darkblue;
+}
+
+.overview-row {
+  background-color: darkgoldenrod;
+}
+
+.section-label {
+  color: white;
+}
+
+.main-category-row-label {
+  font-weight: bold;
+}
+
+.main-category-row-label__total {
+  text-indent: 1em;
+}
+
+.sub-category-row-label {
+  font-weight: normal;
+  text-indent: 1em;
+}
+
+.overview-row-label {
+  font-weight: normal;
+}
+
+.row-label {
+  text-align: left;
+}
+
+.month-label {
+  text-align: right;
+  width: 130px;
 }

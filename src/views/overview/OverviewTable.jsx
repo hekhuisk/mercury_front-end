@@ -1,18 +1,11 @@
 import React from "react";
-import {Table} from 'semantic-ui-react'
-import MoneyDisplay from "../MoneyDisplay";
 import {useSelector} from "react-redux";
-
-const MoneyCell = (props) => (
-    <td align='right' className='money-cell'><MoneyDisplay amount={props.children || 0} /></td>
-);
+import MoneyCell from "../MoneyCell";
 
 const OverviewTable = (props) => {
     const {
         makeGetCategoryName,
         monthlyTotals,
-        totalMonthlyTotals,
-        yearlyTotal
     } = props;
 
     const getMainCategoryName = useSelector((state) => makeGetCategoryName(state, 'main'));
@@ -27,13 +20,14 @@ const OverviewTable = (props) => {
                             <th
                                 align='left'
                                 colSpan={14}
+                                className='row-label main-category-row-label'
                             >
                                 {getMainCategoryName(mainCategoryTotals.mainCategoryID)}
                             </th>
                         </tr>
                         {mainCategoryTotals.subCategoryMonthlyTotals.map((subCategoryTotals) => (
                             <tr>
-                                <th align='left'>{getSubCategoryName(mainCategoryTotals.mainCategoryID, subCategoryTotals.subCategoryID)}</th>
+                                <th className='row-label sub-category-row-label'>{getSubCategoryName(mainCategoryTotals.mainCategoryID, subCategoryTotals.subCategoryID)}</th>
                                 <MoneyCell>{subCategoryTotals.januaryTotal}</MoneyCell>
                                 <MoneyCell>{subCategoryTotals.februaryTotal}</MoneyCell>
                                 <MoneyCell>{subCategoryTotals.marchTotal}</MoneyCell>
@@ -50,7 +44,7 @@ const OverviewTable = (props) => {
                             </tr>
                         ))}
                         <tr>
-                            <th align='left'>{`${getMainCategoryName(mainCategoryTotals.mainCategoryID)} Total`}</th>
+                            <th className='row-label main-category-row-label main-category-row-label__total'>{`${getMainCategoryName(mainCategoryTotals.mainCategoryID)} Total`}</th>
                             <MoneyCell>{mainCategoryTotals.monthlyTotals.JANUARY}</MoneyCell>
                             <MoneyCell>{mainCategoryTotals.monthlyTotals.FEBRUARY}</MoneyCell>
                             <MoneyCell>{mainCategoryTotals.monthlyTotals.MARCH}</MoneyCell>
@@ -67,22 +61,6 @@ const OverviewTable = (props) => {
                         </tr>
                     </>
             )})}
-            <tr>
-                <th align='left'>Overall Totals</th>
-                <MoneyCell>{totalMonthlyTotals && totalMonthlyTotals.JANUARY}</MoneyCell>
-                <MoneyCell>{totalMonthlyTotals && totalMonthlyTotals.FEBRUARY}</MoneyCell>
-                <MoneyCell>{totalMonthlyTotals && totalMonthlyTotals.MARCH}</MoneyCell>
-                <MoneyCell>{totalMonthlyTotals && totalMonthlyTotals.APRIL}</MoneyCell>
-                <MoneyCell>{totalMonthlyTotals && totalMonthlyTotals.MAY}</MoneyCell>
-                <MoneyCell>{totalMonthlyTotals && totalMonthlyTotals.JUNE}</MoneyCell>
-                <MoneyCell>{totalMonthlyTotals && totalMonthlyTotals.JULY}</MoneyCell>
-                <MoneyCell>{totalMonthlyTotals && totalMonthlyTotals.AUGUST}</MoneyCell>
-                <MoneyCell>{totalMonthlyTotals && totalMonthlyTotals.SEPTEMBER}</MoneyCell>
-                <MoneyCell>{totalMonthlyTotals && totalMonthlyTotals.OCTOBER}</MoneyCell>
-                <MoneyCell>{totalMonthlyTotals && totalMonthlyTotals.NOVEMBER}</MoneyCell>
-                <MoneyCell>{totalMonthlyTotals && totalMonthlyTotals.DECEMBER}</MoneyCell>
-                <MoneyCell>{yearlyTotal}</MoneyCell>
-            </tr>
         </>
     );
 };
