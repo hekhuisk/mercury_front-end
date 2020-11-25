@@ -24,7 +24,7 @@ const Overview = () => {
     return (
         <div style={{margin: 'auto', width: `${300 + (130 * 13)}px`, overflowX: 'auto'}}>
             <table style={{width: '100%'}} >
-                <thead style={{position: 'sticky', top: 0}}>
+                <thead>
                     <tr>
                         <th width='300px' className='no-hover'>
                             <button onClick={() => handleYearChange(year - 1)}>

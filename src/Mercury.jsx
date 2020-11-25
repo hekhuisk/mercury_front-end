@@ -17,7 +17,7 @@ const Mercury = () => {
     dispatch(paymentSourceActions.fetchPaymentSources());
 
     return (
-        <div>
+        <div style={{overflow: 'auto'}}>
             <NavBar />
 
             <Switch>
