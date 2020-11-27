@@ -34,7 +34,8 @@ const Income = () => {
         income = {
             ...income,
             ...categoryIDs,
-            userID
+            userID,
+            incomeID
         }
 
         delete income.category;
@@ -42,7 +43,7 @@ const Income = () => {
         console.log(income);
 
         incomeID > 0
-            ? await incomeAPI.updateIncome(income)
+            ? await incomeAPI.updateIncome(income.incomeID, income)
             : await incomeAPI.createIncome(income);
 
         handleClose();
@@ -58,8 +59,8 @@ const Income = () => {
         setOpen(true);
     };
 
-    const handleDeleteIncome = (incomeID) => {
-        //incomeAPI.deleteIncome(incomeID);
+    const handleDeleteIncome = async (incomeID) => {
+        await incomeAPI.deleteIncome(incomeID);
         handleClose();
     }
 

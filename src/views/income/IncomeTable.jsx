@@ -9,7 +9,7 @@ const IncomeTable = (props) => {
     const {
         incomes,
         handleEditIncome,
-        handleDeleteIncomes
+        handleDeleteIncome
     } = props;
 
     const getIncomeCategoryName = useSelector((state) => categorySelectors.makeGetIncomeCategoryName(state, 'combo'));
@@ -41,7 +41,7 @@ const IncomeTable = (props) => {
                             </Button>
                             <Button
                                 icon
-                                onClick={() => handleDeleteIncomes(income.incomeID)}
+                                onClick={() => handleDeleteIncome(income.incomeID)}
                             >
                                 <Icon name='trash alternate' />
                             </Button>

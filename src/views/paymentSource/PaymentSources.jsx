@@ -30,13 +30,15 @@ const PaymentSources = () => {
 
     const handleClose = (doFetch = false) => {
         setOpen(false);
+        setPaymentSourceID(0)
         setDoFetch(doFetch);
     };
 
     const handleSavePaymentSource = async (paymentSource) => {
         paymentSource.userID = userID;
-        paymentSourceID > 0
-            ? await paymentSourceAPI.updatePaymentSource(paymentSource)
+        paymentSource.paymentSourceID = paymentSourceID;
+        paymentSource.paymentSourceID > 0
+            ? await paymentSourceAPI.updatePaymentSource(paymentSource.paymentSourceID, paymentSource)
             : await paymentSourceAPI.createPaymentSource(paymentSource);
 
         handleClose(true);

@@ -34,7 +34,8 @@ const Expenses = () => {
         expense = {
             ...expense,
             ...categoryIDs,
-            userID
+            userID,
+            expenseID
         }
 
         delete expense.category;
@@ -42,7 +43,7 @@ const Expenses = () => {
         console.log(expense);
 
         expenseID > 0
-            ? await expenseAPI.updateExpense(expense)
+            ? await expenseAPI.updateExpense(expense.expenseID, expense)
             : await expenseAPI.createExpense(expense);
 
         handleClose();
@@ -58,8 +59,8 @@ const Expenses = () => {
         setOpen(true);
     };
 
-    const handleDeleteExpense = (expenseID) => {
-        expenseAPI.deleteExpense(expenseID);
+    const handleDeleteExpense = async (expenseID) => {
+        await expenseAPI.deleteExpense(expenseID);
         handleClose();
     }
 
